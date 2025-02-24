@@ -4,16 +4,16 @@ import "strconv"
 
 type Ip struct {
 	ip          string
-	networkSize uint
-	subnet_mask uint
+	networkSize int
+	subnet_mask int
 }
 
-func SubnetCalculator(ip string, networkSize uint) *Ip {
+func SubnetCalculator(ip string, networkSize int) *Ip {
 
 	s := &Ip{
 		ip:          ip,
 		networkSize: networkSize,
-		subnet_mask: 0xFFFFFFFF << uint(32-networkSize),
+		subnet_mask: 0xFFFFFFFF << int(32-networkSize),
 	}
 
 	return s
