@@ -4,27 +4,27 @@ import "testing"
 
 type TestCase struct {
 	ip                     string
-	subnet                 int
-	numberIPAddresses      int
-	numberAddressableHosts int
+	subnet                 uint
+	numberIPAddresses      uint
+	numberAddressableHosts uint
 	ipAddressRange         []string
-	networkSize            int
+	networkSize            uint
 	broadCastAddress       string
-	ipAddressQuards        []int
+	ipAddressQuards        []uint
 	ipAddressHex           string
 	ipAddressBinary        string
 	subnetMask             string
-	subnetMaskQuards       []int
+	subnetMaskQuards       []uint
 	subnetMaskHex          string
 	subnetMaskBinary       string
 
 	networkPortion       string
-	networkPortionQuards []int
+	networkPortionQuards []uint
 	networkPortionHex    string
 	networkPortionBinary string
 
 	hostPortion       string
-	hostPortionQuards []int
+	hostPortionQuards []uint
 	hostPortionHex    string
 	hostPortionBinary string
 }
@@ -38,22 +38,22 @@ func builder() TestCase {
 	test.ipAddressRange = []string{"192.168.112.0", "192.168.113.255"}
 	test.networkSize = 23
 	test.broadCastAddress = "192.168.113.255"
-	test.ipAddressQuards = []int{192, 168, 112, 203}
+	test.ipAddressQuards = []uint{192, 168, 112, 203}
 	test.ipAddressHex = "C0A870CB"
 	test.ipAddressBinary = "11000000101010000111000011001011"
 	// Subnet
 	test.subnetMask = "255.255.254.0"
-	test.subnetMaskQuards = []int{255, 255, 254, 0}
+	test.subnetMaskQuards = []uint{255, 255, 254, 0}
 	test.subnetMaskHex = "FFFFFE00"
 	test.subnetMaskBinary = "11111111111111111111111000000000"
 	// Network Portion
 	test.networkPortion = "192.168.112.0"
-	test.networkPortionQuards = []int{192, 168, 112, 0}
+	test.networkPortionQuards = []uint{192, 168, 112, 0}
 	test.networkPortionHex = "C0A87000"
 	test.networkPortionBinary = "11000000101010000111000000000000"
 	// Network Portion
 	test.hostPortion = "0.0.0.203"
-	test.hostPortionQuards = []int{0, 0, 0, 203}
+	test.hostPortionQuards = []uint{0, 0, 0, 203}
 	test.hostPortionHex = "000000CB"
 	test.hostPortionBinary = "00000000000000000000000011001011"
 	return test
@@ -126,7 +126,7 @@ func TestGetIPAddressQuads(t *testing.T) {
 	wants := builder().ipAddressQuards
 	got := ip().GetIPAddressQuads()
 
-	if got[0] != wants[0] {
+	if got[uint(0)] != wants[uint(0)] {
 		t.Errorf("First Value of GetIPAddressQuards Failed: Wants %v Got %v", wants[0], got[0])
 	}
 	if got[1] != wants[1] {
